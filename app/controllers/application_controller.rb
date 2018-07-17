@@ -5,8 +5,8 @@ class ApplicationController < ActionController::API
     end
 
 
-    def payload(name, id)
-        { name: name, id: id }
+    def payload(username, id)
+        { username: username, id: id }
     end
 
     def get_token(payload)

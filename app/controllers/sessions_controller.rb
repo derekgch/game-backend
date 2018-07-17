@@ -1,7 +1,16 @@
 class SessionsController < ApplicationController
     def create
-        token = get_token(payload("good", 2))
-        render json: {token: token}
+        user = User.find_by(user_name: params[:user_name])
+
+        if (user && user.authenticate(params[:password]))
+            render json: {
+                user_name: user.user_name,
+                id: user.id,
+                token: get_token(payload( user.user_name, user.id ))
+            } 
+        else
+            render json: { err: "Wrong Message" }, status: :unathorized
+        end
     end
 
 end
