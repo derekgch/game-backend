@@ -26,6 +26,11 @@ class Word < ApplicationRecord
     result[rand(result.length)]
   end
 
+  def self.random_hard
+    result = self.hard
+    result[rand(result.length)]
+  end
+
   def self.short
     Word.all.select do |element|
       element.length < 5 && element.length > 2
@@ -34,9 +39,15 @@ class Word < ApplicationRecord
 
   def self.long
     Word.all.select do |element|
-      element.length > 5
+      element.length > 5 && element.length < 11
     end
   end
 
+
+  def self.hard
+    Word.all.select do |element|
+      element.length > 10
+    end
+  end
 
 end

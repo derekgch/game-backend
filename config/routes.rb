@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :games, only: [:index, :show]
       resources :words, only: [:index, :show]
+      get '/long', to: 'words#long'
+      get '/hard', to: 'words#hard'
     end
   end
 
