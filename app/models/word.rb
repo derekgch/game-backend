@@ -33,7 +33,7 @@ class Word < ApplicationRecord
 
   def self.short
     Word.all.select do |element|
-      element.length < 5 && element.length > 2
+      element.length < 6 && element.length > 2
     end
   end
 
