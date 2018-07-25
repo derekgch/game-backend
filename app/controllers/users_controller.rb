@@ -2,7 +2,7 @@ class UsersController < ApplicationController
     def show
         if(requires_login && authorized?(params[:id]))
             user = User.find(params[:id])
-            render json: {user: user }
+            render json: {words: user.words, games: user.games }
         else
             render json: {message: "No!"}, status: :unathorized
         end
@@ -31,15 +31,19 @@ class UsersController < ApplicationController
 
     def update
         # byebug
-        if(requires_login && authorized?(params[:id]))
+        # if(requires_login && authorized?(params[:id]))
+        #     user = User.find(params[:id])
+
+        #     render json: {test: user}
+        # else
+        #     render json: {Err: "user.errors"}, status: :unathorized
+        # end
+            word = params[:word]
             user = User.find(params[:id])
+            word = Word.find_by(word: word.downcase)
+            user.words << word
 
-            render json: {test: user}
-        else
-            render json: {Err: "user.errors"}, status: :unathorized
-        end
-
-
+            render json: {words: user.words}
 
     end
 

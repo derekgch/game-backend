@@ -15,17 +15,14 @@ class GamesController < ApplicationController
             user = User.first
         end
         
-        if(params[:type] == "word")
-            word = Word.findby(word: params[:word])
-            user.words << word
-        end
+
         user.games << game
         render json: user.games
     end
 
-    def show
-        user = User.find(params[:id])
-        render json: {words:user.words}
-    end
+    # def show
+    #     user = User.find(params[:id])
+    #     render json: {words:user.words}
+    # end
 
 end
