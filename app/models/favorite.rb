@@ -3,5 +3,5 @@ class Favorite < ApplicationRecord
   belongs_to :word
 
 
-  validates_uniqueness_of :word, :scope => :user_id
+  validates_uniqueness_of :word_id, :scope => :user_id
 end
