@@ -12,6 +12,6 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :create, :update]
   resources :sessions, only: [:create]
-  resources :games, only: [:index, :create, :update]
+  resources :games, only: [:index, :create, :update, :show]
 
 end
