@@ -1,7 +1,8 @@
 require_relative '../words.rb'
 
 class Word < ApplicationRecord
-
+  has_many :favorites
+  has_many :users, through: :favorites
 
   def self.seed
     puts "ww"
