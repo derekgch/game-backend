@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/games/top', to: 'games#top'
+
   resources :users, only: [:show, :create, :update]
   resources :sessions, only: [:create]
   resources :games, only: [:index, :create, :update]

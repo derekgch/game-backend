@@ -15,14 +15,28 @@ class GamesController < ApplicationController
             user = User.first
         end
         
-
         user.games << game
         render json: user.games
     end
 
-    # def show
-    #     user = User.find(params[:id])
-    #     render json: {words:user.words}
-    # end
+
+
+    def top
+        math_games = Game.all.select{|e| e.gametype == "math"}.sort{|a,b| b.points.to_i <=> a.points.to_i}
+        
+        word_games = Game.all.select{|e| e.gametype == "word"}.sort{|a,b| b.points.to_i <=> a.points.to_i}
+
+        math_array = []
+        math_games[0...5].each{ |e| math_array.push({user:e.users.map{|e| e.user_name}, point: e.points}) }
+
+        word_array = []
+        word_games[0...5].each{ |e| word_array.push({user:e.users.map{|e| e.user_name}, point: e.points}) }
+
+
+        render json: {math: math_array, word:word_array}
+
+    end
+
+ 
 
 end
