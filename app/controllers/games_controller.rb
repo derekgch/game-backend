@@ -6,6 +6,15 @@ class GamesController < ApplicationController
 
     def create
         # byebug
+        if(params[:type] == "multi")
+
+
+        else
+
+
+        end
+
+        
         game = Game.create(points: params[:points], gametype: params[:type])
 
         if(params[:user_id])

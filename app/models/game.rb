@@ -3,6 +3,6 @@ class Game < ApplicationRecord
     has_many :users, through: :user_games 
 
     validates :points, presence: true
-    validates :gametype, inclusion: { in: %w(math word),
+    validates :gametype, inclusion: { in: %w(math word multi),
             message: "%{value} is not a valid type" }
 end
