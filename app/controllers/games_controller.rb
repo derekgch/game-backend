@@ -43,11 +43,24 @@ class GamesController < ApplicationController
         word_array = []
         word_games[0...5].each{ |e| word_array.push({user:e.users.map{|e| e.user_name}, point: e.points}) }
         
-        multi_array =multi_games[0].users
+        users ={}
+        multi_array=[]
+        multi_games.each{ |e| multi_array.push({user: e.users.map{|e| e.user_name}})}
+        test = multi_array[0][:user].join;
+        multi_array.each do |e|
+            e_user = e[:user].join
+            if(users.keys.include?(e_user))
+                count = users[ e_user ]
+                count = count +1
+                users[ e_user ] = count;
+            else
+                users[e_user] =1
+            end
+        end
 
 
 
-        render json: {math: math_array, word:word_array, multi: multi_array}
+        render json: {math: math_array, word:word_array, multi: users}
 
     end
 
