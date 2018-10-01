@@ -16,9 +16,10 @@ class UsersController < ApplicationController
             password: params[:password],
             email: params[:email]
         }
-        # byebug
 
         user = User.create(newUser)
+        # byebug
+
         if user.valid?
             render json: {
                 user: user,
